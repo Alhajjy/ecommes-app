@@ -1,11 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { counterSlice } from "./productSlice";
-
-// const enhancer = window.__REDUX_DEVTOOLS_EXTENSION__();
+import userSlice from "./userSlice";
+import productSlice from "./productSlice";
+import basketSlice from "./basketSlice";
 
 const store = configureStore({
     reducer: {
-        counter: counterSlice,
+        user: userSlice,
+        counter: productSlice,
+        basket: basketSlice,
     },
 });
+
 export default store;
