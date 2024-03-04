@@ -3,10 +3,10 @@ import Cards from "./Cards";
 import Categories from "./Categories";
 
 export default function Home() {
-    return (
-        <div>
-            <Categories />
-            <Cards />
-        </div>
-    );
+  return (
+    <div>
+      <Categories />
+      <Cards />
+    </div>
+  );
 }
