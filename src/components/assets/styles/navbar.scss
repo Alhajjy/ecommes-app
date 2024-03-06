@@ -1,0 +1,22 @@
+.navy1 {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
+.nav-link {
+  position: relative;
+  font-size: 2rem;
+  .p-num {
+    background-color: red;
+    text-align: center;
+    min-width: 15px;
+    height: 15px;
+    padding-bottom: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 0.7rem;
+    border-radius: 50%;
+  }
+}
