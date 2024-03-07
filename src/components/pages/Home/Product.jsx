@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
-import { addProduct, removeProduct } from "../store/basketSlice";
+import { addProduct, removeProduct } from "../../store/basketSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function Product() {

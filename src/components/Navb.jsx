@@ -4,19 +4,20 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Navb() {
   const { products } = useSelector((state) => state.basket);
   return (
-    <Navbar expand="lg" className="bg-body-tertiary navy1">
+    <Navbar expand="lg" className="bg-body-tertiary nav-con">
       <Container className="navy">
         <Navbar.Brand href="#home">Elites caffee</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#about">About</Nav.Link>
-            <Nav.Link href="#basket">
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/basket">
               <FontAwesomeIcon
                 className="basket-link"
                 icon={faShoppingBasket}
@@ -24,7 +25,7 @@ function Navb() {
               <div className="p-num">
                 {products.length < 10 ? products.length : "+9"}
               </div>
-            </Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

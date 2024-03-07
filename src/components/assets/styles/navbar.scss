@@ -1,22 +1,33 @@
-.navy1 {
+.nav-con {
+  max-height: 56px;
   position: fixed !important;
   top: 0;
   width: 100%;
   z-index: 9;
+  // padding: 20px 80px !important;
+  background-color: red;
 }
-.nav-link {
-  position: relative;
-  font-size: 2rem;
-  .p-num {
-    background-color: red;
-    text-align: center;
-    min-width: 15px;
-    height: 15px;
-    padding-bottom: 5px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 0.7rem;
-    border-radius: 50%;
+.navbar-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  a {
+    position: relative;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    .p-num {
+      background-color: red;
+      text-align: center;
+      width: 18px;
+      height: 18px;
+      padding-bottom: 5px;
+      position: absolute;
+      top: -20%;
+      right: -25%;
+      font-size: 0.7rem;
+      border-radius: 50%;
+    }
   }
 }

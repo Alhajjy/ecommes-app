@@ -5,8 +5,10 @@ import Categories from "./Categories";
 export default function Home() {
   return (
     <div>
-      <Categories />
-      <Cards />
+      <div className="main-con">
+        <Categories />
+        <Cards />
+      </div>
     </div>
   );
 }
