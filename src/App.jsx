@@ -1,9 +1,9 @@
 import "./App.scss";
-import Home from "./components/pages/Home/Home";
+import Home from "./pages/Home/Home";
 import "bootstrap/scss/bootstrap.scss";
 import { Route, Routes } from "react-router";
-import About from "./components/pages/About/About";
-import Basket from "./components/pages/Basket/Basket";
+import About from "./pages/About/About";
+import Basket from "./pages/Basket/Basket";
 
 function App() {
   return (
