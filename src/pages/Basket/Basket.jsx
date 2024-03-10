@@ -6,6 +6,7 @@ function Details() {
     <>
       <div className="main-con">
         <div className="pro-details products">
+          {" "}
           <BProds />
         </div>
         <div className="payment">Payment</div>

@@ -1,8 +1,8 @@
 import axios from "axios";
 // GET
-export const getBasketProducts = (setData) => {
+export const getBasketProducts = (link, setData) => {
   axios
-    .get("https://api.escuelajs.co/api/v1/products")
+    .get(link)
     .then((res) => setData(res.data))
     .catch((err) => console.log(err));
 };

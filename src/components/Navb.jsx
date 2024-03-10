@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 function Navb() {
   const { products } = useSelector((state) => state.basket);
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary nav-con">
       <Container className="navy">
