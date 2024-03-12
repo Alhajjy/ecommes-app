@@ -14,7 +14,7 @@ function Product() {
   const { products } = useSelector((state) => state.basket);
   const dispatch = useDispatch();
   axios
-    .get("https://api.escuelajs.co/api/v1/products")
+    .get("https://fakestoreapi.com/products")
     .then((res) => setProds(res.data))
     .catch((err) => console.log(err));
   const toBasket = (id) => {
@@ -27,7 +27,7 @@ function Product() {
   return prods.map((product) => {
     return (
       <Card style={{ width: "18rem" }} key={product.id}>
-        <Card.Img variant="top" src={product.images[0]} />
+        <Card.Img variant="top" src={product.image} />
         <Card.Body>
           <Card.Title>{product.title}</Card.Title>
           <Card.Text>{product.description}</Card.Text>

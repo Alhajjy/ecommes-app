@@ -27,6 +27,7 @@ function Navb() {
                 {products.length < 10 ? products.length : "+9"}
               </div>
             </Link>
+            <Link to="/admin">Admin</Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

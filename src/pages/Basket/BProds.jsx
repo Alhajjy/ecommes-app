@@ -20,10 +20,7 @@ function BProds() {
     }
   };
   const haha = async () => {
-    await getBasketProducts(
-      `https://api.escuelajs.co/api/v1/products/`,
-      setPros
-    );
+    await getBasketProducts(`https://fakestoreapi.com/products`, setPros);
   };
   useEffect(() => {
     haha();
@@ -33,7 +30,7 @@ function BProds() {
       if (products.includes(product.id)) {
         return (
           <Card style={{ width: "18rem" }} key={product.id}>
-            <Card.Img variant="top" src={product.images[0]} />
+            <Card.Img variant="top" src={product.image} />
             <Card.Body>
               <Card.Title>{product.title}</Card.Title>
               <Card.Text>{product.description}</Card.Text>
