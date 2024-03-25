@@ -6,6 +6,7 @@ export default function Home() {
   return (
     <div>
       <div className="main-con">
+        {/* <Testfirebase /> */}
         <Categories />
         <Cards />
       </div>

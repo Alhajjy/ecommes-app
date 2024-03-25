@@ -1,82 +1,95 @@
-import React, { useEffect, useState } from "react";
-import { createProduct } from "../../assets/api/api";
+import React, { useState } from "react";
+import { app, database } from "../../firebase";
+import { getDatabase, ref, set, push, update } from "firebase/database";
+import { generateUniqueId } from "../../assets/layout/generateId";
+import { useSelector } from "react-redux";
+import { emptyItemData } from "../../store/editItSlice";
 
 const CreateProduct = () => {
-  // let [data, setData] = useState({});
-  // window.on(
-  //   setData([
-  //     document.getElementById("title").value,
-  //     document.getElementById("price").value,
-  //     document.getElementById("description").value,
-  //     document.getElementById("categoryId").value,
-  //     "https://picsum.photos/200/230",
-  //   ])
-  // );
-  // const publish = () => {
-  //   setData({
-  //     title: document.getElementById("title").value,
-  //     price: document.getElementById("price").value,
-  //     description: document.getElementById("description").value,
-  //     categoryId: document.getElementById("categoryId").value,
-  //     images: ["https://picsum.photos/200/230"],
-  //   });
-  //   createProduct("https://api.escuelajs.co/api/v1/products/", data);
-  // };
-  // useEffect(() => {
-  //   setData({
-  //     title: document.getElementById("title").value,
-  //     price: document.getElementById("price").value,
-  //     description: document.getElementById("description").value,
-  //     categoryId: document.getElementById("categoryId").value,
-  //     images: "https://picsum.photos/200/230",
-  //   });
-  // }, [
-  //   document.getElementById("title").value,
-  //   document.getElementById("price").value,
-  //   document.getElementById("description").value,
-  //   document.getElementById("categoryId").value,
-  // ]);
-  // console.log(document.getElementById("price").value);
+  const { item } = useSelector((state) => state.editIt);
+  let [data, setData] = useState(item);
+  const handleCreateOrEdit = async () => {
+    const db = getDatabase(app);
+    if (!item.id) {
+      let key = generateUniqueId();
+      const newDocRef = ref(db, `products/${key}`);
+      await set(newDocRef, {
+        ...data,
+        image: "https://random.imagecdn.app/620/500",
+        id: key,
+      })
+        .then(alert("created"))
+        .catch((err) => console.log(err));
+      emptyItemData();
+    } else {
+      const newDocRef = ref(db, `products/${item.id}`);
+      await update(newDocRef, {
+        ...data,
+        id: item.id,
+      })
+        .then(alert("updated"))
+        .catch((err) => console.log(err));
+      emptyItemData();
+      window.location.reload();
+    }
+  };
   return (
     <div>
-      <h3>Create New Product:</h3>
-      <form
-        id="myform"
-        action="https://fakestoreapi.com/products"
-        method="post"
-      >
+      <h3>{!data.id ? "Create New" : "Edit"} Product:</h3>
+      <form>
         <div>
           <label for="title">Product`s Title:</label>
-          <input id="title" name="title" value="hererererheheh" />
+          <input
+            value={data.title}
+            onChange={(e) => {
+              setData({ ...data, title: e.target.value });
+            }}
+          />
         </div>
         <div>
           <label for="price">Product`s Price:</label>
-          <input name="price" id="price" value="11" type="number" />
+          <input
+            value={data.price}
+            onChange={(e) => setData({ ...data, price: e.target.value })}
+            type="number"
+          />
         </div>
         <div>
           <label for="description">Product`s description:</label>
           <textarea
-            id="description"
-            name="description"
-            value="heheheh"
+            value={data.description}
+            onChange={(e) => setData({ ...data, description: e.target.value })}
             cols="30"
             rows="4"
           ></textarea>
         </div>
         <div>
-          <label for="category">Category Id:</label>
-          <input id="category" name="category" value="electronic" type="text" />
-        </div>
-        <div>
-          <label for="image">images:</label>
+          <label for="category">Category:</label>
           <input
-            id="image"
-            name="image"
-            type="url"
-            value="https://picsum.photos/200/230"
+            value={data.category}
+            onChange={(e) => setData({ ...data, category: e.target.value })}
           />
         </div>
-        <input type="submit" value="Publish" />
+        <div>
+          <label for="image">Image link:</label>
+          <input
+            value={data.image}
+            onChange={(e) =>
+              setData({
+                ...data,
+                image: e.target.value,
+              })
+            }
+          />
+        </div>
+        <input
+          type="submit"
+          value="Publish"
+          onClick={(e) => {
+            e.preventDefault();
+            handleCreateOrEdit();
+          }}
+        />
       </form>
     </div>
   );

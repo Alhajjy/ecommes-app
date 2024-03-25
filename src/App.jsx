@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router";
 import About from "./pages/About/About";
 import Basket from "./pages/Basket/Basket";
 import Admin from "./pages/Admin/Admin";
+import Testfirebase from "./components/testfirebase";
 
 function App() {
   return (
