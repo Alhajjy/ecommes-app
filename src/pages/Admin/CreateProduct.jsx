@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { app, database } from "../../firebase";
-import { getDatabase, ref, set, push, update } from "firebase/database";
+import { app } from "../../firebase";
+import { getDatabase, ref, set, update } from "firebase/database";
 import { generateUniqueId } from "../../assets/layout/generateId";
 import { useSelector } from "react-redux";
 import { emptyItemData } from "../../store/editItSlice";
