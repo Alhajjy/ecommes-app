@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { app } from "../../firebase";
 import { getDatabase, ref, set, update } from "firebase/database";
 import { generateUniqueId } from "../../assets/layout/generateId";
@@ -9,30 +9,44 @@ const CreateProduct = () => {
   const { item } = useSelector((state) => state.editIt);
   let [data, setData] = useState(item);
   const handleCreateOrEdit = async () => {
-    const db = getDatabase(app);
-    if (!item.id) {
-      let key = generateUniqueId();
-      const newDocRef = ref(db, `products/${key}`);
-      await set(newDocRef, {
-        ...data,
-        image: "https://random.imagecdn.app/620/500",
-        id: key,
-      })
-        .then(alert("created"))
-        .catch((err) => console.log(err));
-      emptyItemData();
+    if (
+      !data.title ||
+      !data.price ||
+      !data.description ||
+      !data.category ||
+      !data.image
+    ) {
+      alert("Fill In The All Blanks Please!");
     } else {
-      const newDocRef = ref(db, `products/${item.id}`);
-      await update(newDocRef, {
-        ...data,
-        id: item.id,
-      })
-        .then(alert("updated"))
-        .catch((err) => console.log(err));
-      emptyItemData();
-      window.location.reload();
+      const db = getDatabase(app);
+      if (!item.id) {
+        let key = generateUniqueId();
+        const newDocRef = ref(db, `products/${key}`);
+        await set(newDocRef, {
+          ...data,
+          id: key,
+        })
+          .then(alert("created"))
+          .catch((err) => console.log(err));
+        emptyItemData();
+      } else {
+        const newDocRef = ref(db, `products/${item.id}`);
+        await update(newDocRef, {
+          ...data,
+          id: item.id,
+        })
+          .then(alert("updated"))
+          .catch((err) => console.log(err));
+        emptyItemData();
+        window.location.reload();
+      }
     }
   };
+  useEffect(() => {
+    if (!item.image) {
+      setData({ ...data, image: "https://random.imagecdn.app/620/500" });
+    }
+  }, []);
   return (
     <div>
       <h3>{!data.id ? "Create New" : "Edit"} Product:</h3>
