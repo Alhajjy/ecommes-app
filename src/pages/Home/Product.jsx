@@ -27,16 +27,6 @@ function Product() {
     }
   };
   const deleteProd = async (itemId) => {
-    // const dbRef = getDatabase(app).ref(`products`).child(itemId);
-    // dbRef
-    //   .remove()
-    //   .then(() => {
-    //     alert(itemId);
-    //     window.location.reload();
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
     const database = getDatabase(app);
 
     const userRef = ref(database, `products/${itemId}`);

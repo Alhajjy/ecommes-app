@@ -3,3 +3,21 @@
   background-color: red;
   padding: 20px 80px;
 }
+
+.toast .btn-close {
+  display: none;
+}
+@keyframes hideme {
+  0% {
+    top: -200px;
+  }
+  20% {
+    top: 20px;
+  }
+  80% {
+    top: 20px;
+  }
+  100% {
+    top: -200px;
+  }
+}
