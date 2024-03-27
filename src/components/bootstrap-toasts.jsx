@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Toast } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { handleToast } from "../store/toastSlice";
+import { handleToast, togglIt } from "../store/toastSlice";
 
 const BootstrapToasts = ({ toastCase }) => {
-  const { toast } = useSelector((state) => state.toast);
+  const { toast, toggle } = useSelector((state) => state.toast);
   const dispatch = useDispatch();
   const [style] = useState({
-    toast: { position: "absolute", top: "25px", right: "20px", zIndex: "9" },
+    toast: {},
     header: {},
   });
   const conftoastStyle = () => {
@@ -17,9 +17,8 @@ const BootstrapToasts = ({ toastCase }) => {
         style.toast = {
           ...style.toast,
           background: `${toast.background}`,
-          color: "white",
-          // animation: "hideme 5s ease-in-out 0s infinite alternate",
-          overflow: "hidden",
+          animation: `${toggle ? "hideme 4s linear 0s 1 alternate" : "none"}`,
+          display: `${!toggle ? "inline" : "hidden"}`,
         };
         style.header = { background: "black", color: "white" };
         break;
@@ -29,15 +28,34 @@ const BootstrapToasts = ({ toastCase }) => {
   };
   useEffect(() => {
     conftoastStyle();
-  }, []);
+    console.log(toggle);
+  }, [toggle]);
+  // useEffect(() => {
+  //   setTg(toggle);
+  // }, [toggle]);
   return (
-    <Toast style={{ ...style.toast }}>
-      <Toast.Header style={{ ...style.header }}>
-        <strong className="me-auto">{toast.title}</strong>
-        <small>11 mins ago</small>
-      </Toast.Header>
-      <Toast.Body>{toast.message}</Toast.Body>
-    </Toast>
+    <div>
+      <Toast
+        onAnimationEnd={() => {
+          console.log(toggle);
+          dispatch(togglIt());
+        }}
+        style={{
+          ...style.toast,
+          position: "absolute",
+          right: "20px",
+          zIndex: "9",
+          color: "white",
+          top: "200px",
+        }}
+      >
+        <Toast.Header style={{ ...style.header }}>
+          <strong className="me-auto">{toast.title}</strong>
+          <small>11 mins ago</small>
+        </Toast.Header>
+        <Toast.Body>{toast.message}</Toast.Body>
+      </Toast>
+    </div>
   );
 };
 

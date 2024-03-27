@@ -3,10 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const toastSlice = createSlice({
   name: "toast",
   initialState: {
+    toggle: false,
     case: "",
     toast: {},
   },
   reducers: {
+    togglIt: (state, action) => {
+      state.toggle = !state.toggle;
+    },
     handleCase: (state, action) => {
       state.case = action.payload;
     },
@@ -32,5 +36,5 @@ export const toastSlice = createSlice({
   },
 });
 
-export const { handleCase, handleToast } = toastSlice.actions;
+export const { handleCase, handleToast, togglIt } = toastSlice.actions;
 export default toastSlice.reducer;

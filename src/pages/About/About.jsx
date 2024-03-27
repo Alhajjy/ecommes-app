@@ -1,26 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import BootstrapToasts from "../../components/bootstrap-toasts";
+import { useDispatch } from "react-redux";
+import { togglIt } from "../../store/toastSlice";
 
 const About = () => {
-  const [isTrue, setIsTrue] = useState(false);
-
+  const dispatch = useDispatch();
   return (
     <div className="about">
       <div className="main-con">
-        {isTrue ? (
-          <BootstrapToasts toastCase="create" />
-        ) : (
-          <BootstrapToasts toastCase="create" display="none" />
-        )}
+        <BootstrapToasts toastCase="create" />
         <p>About</p>
         <p>About</p>
         <p>About</p>
         <p
           onClick={() => {
-            setTimeout(() => {
-              setIsTrue(!isTrue);
-            }, 5);
-            setIsTrue(!isTrue);
+            dispatch(togglIt());
           }}
         >
           hiodhfdofd
