@@ -9,7 +9,7 @@
 }
 @keyframes hideme {
   0% {
-    top: 200px;
+    top: -200px;
   }
   5% {
     top: 20px;
@@ -18,6 +18,6 @@
     top: 20px;
   }
   100% {
-    top: 200px;
+    top: -200px;
   }
 }

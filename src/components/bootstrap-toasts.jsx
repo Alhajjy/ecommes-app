@@ -12,6 +12,8 @@ const BootstrapToasts = ({ toastCase }) => {
   });
   const conftoastStyle = () => {
     dispatch(handleToast(toastCase));
+
+    console.log(toast.background);
     switch (toastCase) {
       case "create":
         style.toast = {
@@ -20,7 +22,38 @@ const BootstrapToasts = ({ toastCase }) => {
           animation: `${toggle ? "hideme 4s linear 0s 1 alternate" : "none"}`,
           display: `${!toggle ? "inline" : "hidden"}`,
         };
-        style.header = { background: "black", color: "white" };
+        style.header = {
+          background:
+            "linear-gradient(90deg, rgba(25,135,84,1) 0%, rgba(0,4,98,1) 50%, rgba(238,0,0,1) 100%)",
+          color: "white",
+        };
+        break;
+      case "update":
+        console.log(toast.background);
+        style.toast = {
+          ...style.toast,
+          background: `${toast.background}`,
+          animation: `${toggle ? "hideme 4s linear 0s 1 alternate" : "none"}`,
+          display: `${!toggle ? "inline" : "hidden"}`,
+        };
+        style.header = {
+          background:
+            "linear-gradient(90deg, rgba(25,135,84,1) 0%, rgba(0,4,98,1) 50%, rgba(238,0,0,1) 100%)",
+          color: "white",
+        };
+        break;
+      case "delete":
+        style.toast = {
+          ...style.toast,
+          background: `${toast.background}`,
+          animation: `${toggle ? "hideme 4s linear 0s 1 alternate" : "none"}`,
+          display: `${!toggle ? "inline" : "hidden"}`,
+        };
+        style.header = {
+          background:
+            "linear-gradient(90deg, rgba(25,135,84,1) 0%, rgba(0,4,98,1) 50%, rgba(238,0,0,1) 100%)",
+          color: "white",
+        };
         break;
       default:
         break;
@@ -30,9 +63,6 @@ const BootstrapToasts = ({ toastCase }) => {
     conftoastStyle();
     console.log(toggle);
   }, [toggle]);
-  // useEffect(() => {
-  //   setTg(toggle);
-  // }, [toggle]);
   return (
     <div>
       <Toast
@@ -51,7 +81,17 @@ const BootstrapToasts = ({ toastCase }) => {
       >
         <Toast.Header style={{ ...style.header }}>
           <strong className="me-auto">{toast.title}</strong>
-          <small>11 mins ago</small>
+          <small
+            className="btn"
+            style={{
+              background: "#5c636a",
+              fontWeight: "bold",
+              padding: "0px 6px",
+            }}
+            onClick={() => togglIt()}
+          >
+            x
+          </small>
         </Toast.Header>
         <Toast.Body>{toast.message}</Toast.Body>
       </Toast>

@@ -5,7 +5,11 @@ export const toastSlice = createSlice({
   initialState: {
     toggle: false,
     case: "",
-    toast: {},
+    toast: {
+      title: "Done",
+      message: "Action Done Successfully!",
+      background: "#0a58ca",
+    },
   },
   reducers: {
     togglIt: (state, action) => {
@@ -20,14 +24,22 @@ export const toastSlice = createSlice({
           state.toast = {
             title: "Creation",
             message: "New Product Created!",
-            background: "#198754",
-            hBackground: "#198754",
-            time: 3000,
+            background: "#157347",
           };
           break;
         case "update":
+          state.toast = {
+            title: "Updating",
+            message: "Product Edited Successfully!",
+            background: "#0a58ca",
+          };
           break;
         case "delete":
+          state.toast = {
+            title: "Deleting",
+            message: "Product Deleted Successfully!",
+            background: "#b02a37",
+          };
           break;
         default:
           break;
