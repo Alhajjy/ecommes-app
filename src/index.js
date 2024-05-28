@@ -10,10 +10,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <Router>
-      <React.StrictMode>
-        <Navb />
-        <App />
-      </React.StrictMode>
+      {/* <React.StrictMode> */}
+      <Navb />
+      <App />
+      {/* </React.StrictMode> */}
     </Router>
   </Provider>
 );

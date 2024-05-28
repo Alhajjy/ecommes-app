@@ -1,75 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { Toast } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { handleToast, togglIt } from "../store/toastSlice";
+import { handleToast } from "../store/toastSlice";
 
 const BootstrapToasts = ({ toastCase }) => {
   const { toast, toggle } = useSelector((state) => state.toast);
   const dispatch = useDispatch();
   const [style] = useState({
-    toast: {},
-    header: {},
+    toast: { background: `${toast.background}` },
+    header: {
+      background:
+        "linear-gradient(90deg, rgba(25,135,84,1) 0%, rgba(0,4,98,1) 50%, rgba(238,0,0,1) 100%)",
+      color: "white",
+      height: "35px",
+    },
   });
-  const conftoastStyle = () => {
-    dispatch(handleToast(toastCase));
-
-    console.log(toast.background);
+  const confToastStyle = () => {
     switch (toastCase) {
       case "create":
         style.toast = {
           ...style.toast,
           background: `${toast.background}`,
-          animation: `${toggle ? "hideme 4s linear 0s 1 alternate" : "none"}`,
-          display: `${!toggle ? "inline" : "hidden"}`,
-        };
-        style.header = {
-          background:
-            "linear-gradient(90deg, rgba(25,135,84,1) 0%, rgba(0,4,98,1) 50%, rgba(238,0,0,1) 100%)",
-          color: "white",
+          // animation: `${toggle ? "hideme 4s linear 0s 1 alternate" : "none"}`,
         };
         break;
       case "update":
-        console.log(toast.background);
         style.toast = {
           ...style.toast,
           background: `${toast.background}`,
-          animation: `${toggle ? "hideme 4s linear 0s 1 alternate" : "none"}`,
-          display: `${!toggle ? "inline" : "hidden"}`,
-        };
-        style.header = {
-          background:
-            "linear-gradient(90deg, rgba(25,135,84,1) 0%, rgba(0,4,98,1) 50%, rgba(238,0,0,1) 100%)",
-          color: "white",
+          // animation: `${toggle ? "hideme 4s linear 0s 1 alternate" : "none"}`,
         };
         break;
       case "delete":
         style.toast = {
           ...style.toast,
           background: `${toast.background}`,
-          animation: `${toggle ? "hideme 4s linear 0s 1 alternate" : "none"}`,
-          display: `${!toggle ? "inline" : "hidden"}`,
-        };
-        style.header = {
-          background:
-            "linear-gradient(90deg, rgba(25,135,84,1) 0%, rgba(0,4,98,1) 50%, rgba(238,0,0,1) 100%)",
-          color: "white",
+          // animation: `${toggle ? "hideme 4s linear 0s 1 alternate" : "none"}`,
         };
         break;
       default:
         break;
     }
+    dispatch(handleToast(toastCase));
+    console.log(toast.title, toast.background);
   };
   useEffect(() => {
-    conftoastStyle();
+    confToastStyle();
     console.log(toggle);
   }, [toggle]);
   return (
     <div>
       <Toast
-        onAnimationEnd={() => {
-          console.log(toggle);
-          dispatch(togglIt());
-        }}
+        // onAnimationEnd={() => {
+        //   console.log(toggle);
+        //   dispatch(togglIt());
+        // }}
         style={{
           ...style.toast,
           position: "absolute",
@@ -81,7 +66,7 @@ const BootstrapToasts = ({ toastCase }) => {
       >
         <Toast.Header style={{ ...style.header }}>
           <strong className="me-auto">{toast.title}</strong>
-          <small
+          {/* <small
             className="btn"
             style={{
               background: "#5c636a",
@@ -91,7 +76,7 @@ const BootstrapToasts = ({ toastCase }) => {
             onClick={() => togglIt()}
           >
             x
-          </small>
+          </small> */}
         </Toast.Header>
         <Toast.Body>{toast.message}</Toast.Body>
       </Toast>

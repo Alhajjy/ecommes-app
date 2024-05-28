@@ -10,37 +10,30 @@ const About = () => {
     <div className="about">
       <div className="main-con">
         <BootstrapToasts toastCase={msg} />
-        <p>About</p>
-        <p>About</p>
-        <p>About</p>
         <p
           onClick={() => {
-            setMsg("create");
             dispatch(togglIt());
+            setMsg("create");
           }}
         >
           create
         </p>
         <p
           onClick={() => {
-            setMsg("update");
             dispatch(togglIt());
+            setMsg("update");
           }}
         >
           edit
         </p>
         <p
           onClick={() => {
-            setMsg("delete");
             dispatch(togglIt());
+            setMsg("delete");
           }}
         >
           delete
         </p>
-        <p>About</p>
-        <p>About</p>
-        <p>About</p>
-        <p>About</p>
       </div>
     </div>
   );

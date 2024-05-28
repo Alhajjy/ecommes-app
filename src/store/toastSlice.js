@@ -29,7 +29,7 @@ export const toastSlice = createSlice({
           break;
         case "update":
           state.toast = {
-            title: "Updating",
+            title: "Editing",
             message: "Product Edited Successfully!",
             background: "#0a58ca",
           };
